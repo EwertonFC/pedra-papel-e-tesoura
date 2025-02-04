@@ -1,66 +1,14 @@
-function getEscolhaComputador(){
-    let escolha1 = "tesoura"
-    let escolha2 = "papel"
-    let escolha3 = "pedra"
-    let escolhaAleatoria = Math.floor(Math.random()*3)
+let botao1 = document.querySelector("#btn-1")
+let botao2 = document.querySelector("#btn-2")
+let botao3 = document.querySelector("#btn-3")
 
-    if (escolhaAleatoria === 0){
-        console.log("Computador escolheu: tesoura")
-        return escolha1
-    }else if (escolhaAleatoria === 1) {
-        console.log("Computador escolheu: papel")
-        return escolha2
-    }else {
-        console.log("Computador escolheu: pedra")
-        return escolhaAleatoria = escolha3
-    }
-}
+botao1.addEventListener("click", function getPedra(){
+    return console.log(botao1.textContent.toLocaleLowerCase())
+})
+botao2.addEventListener("click", function getPapel(){
+    return console.log(botao2.textContent.toLocaleLowerCase())
+})
+botao3.addEventListener("click", function getTesoura(){
+    return console.log(botao3.textContent.toLocaleLowerCase())
+})
 
-function getEscolhaHumano(){
-    let humanChoice = prompt("Qual opcao: Pedra, Papel ou Tesoura?")
-    console.log(`Voce escolheu: ${humanChoice}`)
-    return humanChoice.toLowerCase()
-}
-
-function jogo(){
-    
-    let pontuacaoHumano = 0
-    let pontuacaoComputador = 0
-    let controlador  = 0 
-    
-    function jogarRound(humano, computador){
-
-        if (humano === computador){
-            pontuacaoComputador = ++pontuacaoComputador
-            pontuacaoHumano = ++pontuacaoHumano
-            console.log(`Houve um empate! \n1 ponto para cada.\nComputador: ${pontuacaoComputador}\nHumano: ${pontuacaoHumano}`)
-        } else if (humano === "pedra" && computador === "tesoura") {
-            pontuacaoHumano = ++pontuacaoHumano
-            return console.log(`Humano venceu a rodada. Pontuacao atual: ${pontuacaoHumano}`)
-        } else if (humano === "papel" && computador === "pedra") {
-            pontuacaoHumano = ++pontuacaoHumano
-            return console.log(`Humano venceu a rodada. Pontuacao atual: ${pontuacaoHumano}`)
-        } else if (humano === "tesoura" && computador === "papel") {
-            pontuacaoHumano = ++pontuacaoHumano
-            return console.log(`Humano venceu a rodada. Pontuacao atual: ${pontuacaoHumano}`)
-        } else {
-            pontuacaoComputador = ++pontuacaoComputador
-            return console.log(`Computador venceu a rodada. Pontuacao atual: ${pontuacaoComputador}`)
-        }
-    }
-
-    while (controlador < 3){
-        controlador = ++controlador
-        jogarRound(getEscolhaHumano(), getEscolhaComputador())
-    }
-    
-    if (pontuacaoHumano > pontuacaoComputador){
-        console.log(`Voce ganhou com uma pontuacao de ${pontuacaoHumano}`)
-    } else if (pontuacaoComputador > pontuacaoHumano) {
-        console.log(`Computador ganhou com uma pontuacao de ${pontuacaoComputador}`)
-    } else {
-        console.log(`Houve um empate onde voce ficou com: ${pontuacaoHumano} e o computador ${pontuacaoComputador}`)
-    }
-}
-
-jogo();
