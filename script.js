@@ -1,6 +1,7 @@
 let botao1 = document.querySelector("#btn-1")
 let botao2 = document.querySelector("#btn-2")
 let botao3 = document.querySelector("#btn-3")
+let resultado = document.querySelector("#resultado")
 
 function getComputador(){
     let opcoes = ["pedra", "papel", "tesoura"]
@@ -21,11 +22,11 @@ let humanoScore = 0
 function playGame(){
     playRound()
     if (computadorScore === 5){
-        console.log(`computador ganhou o jogo. Computador score: ${computadorScore} x humano: ${humanoScore}`)
+        resultado.innerText = `computador ganhou o jogo. Computador score: ${computadorScore} x humano: ${humanoScore}`
         computadorScore = 0
         humanoScore = 0
     } else if (humanoScore === 5){
-        console.log(`Voce ganhou o jogo. Computador score: ${computadorScore} x humano: ${humanoScore}`)
+        resultado.innerText = `Voce ganhou o jogo. Computador score: ${computadorScore} x humano: ${humanoScore}`
         computadorScore = 0
         humanoScore = 0
     }
@@ -36,33 +37,36 @@ function playRound(){
     let escolhaHumano = document.activeElement.textContent.toLocaleLowerCase()
     let escolhaComputador = getComputador()
 
-    if (escolhaHumano === escolhaComputador){
-        console.log(`empate. Vc escolheu ${escolhaHumano} e o computador tambem escolher ${escolhaComputador}`)    
-        console.log(`score computador: ${computadorScore} x score humano: ${humanoScore}`)
-    } else if (escolhaHumano === "pedra" && escolhaComputador === "papel"){
-        console.log(`Vc escolheu ${escolhaHumano} e o computador ${escolhaComputador}. Vc perdeu.`)
+    if (escolhaComputador === escolhaHumano) {
+        resultado.innerText = `Empate rodada. 
+        Escolha computador: ${escolhaComputador} x Sua escolha: ${escolhaHumano}
+        Computador score: ${computadorScore} x Seu score: ${humanoScore}.`
+    }
+    
+    else if (escolhaHumano === "pedra" && escolhaComputador === "papel"){
         computadorScore = ++computadorScore
-        console.log(`score computador: ${computadorScore} x score humano: ${humanoScore}`)
+        resultado.innerText = `Escolha computador: ${escolhaComputador} x Sua escolha: ${escolhaHumano}
+        Computador score: ${computadorScore} x Seu score: ${humanoScore}.`
     } else if (escolhaHumano === "pedra" && escolhaComputador === "tesoura"){
-        console.log(`Vc escolheu ${escolhaHumano} e o computador ${escolhaComputador}. Vc ganhou.`)
         humanoScore = ++humanoScore
-        console.log(`score computador: ${computadorScore} x score humano: ${humanoScore}`)
+        resultado.innerText = `Escolha computador: ${escolhaComputador} x Sua escolha: ${escolhaHumano}
+        Computador score: ${computadorScore} x Seu score: ${humanoScore}.`
     } else if (escolhaHumano === "tesoura" && escolhaComputador === "pedra"){
-        console.log(`Vc escolheu ${escolhaHumano} e o computador ${escolhaComputador}. Vc perdeu.`)
-        rcomputadorScore = ++computadorScore
-        console.log(`score computador: ${computadorScore} x score humano: ${humanoScore}`)
-    } else if (escolhaHumano === "tesoura" && escolhaComputador === "papel"){
-        console.log(`Vc escolheu ${escolhaHumano} e o computador ${escolhaComputador}. Vc ganhou.`)
-        humanoScore = ++humanoScore
-        console.log(`score computador: ${computadorScore} x score humano: ${humanoScore}`)
-    } else if (escolhaHumano === "papel" && escolhaComputador === "pedra"){
-        console.log(`Vc escolheu ${escolhaHumano} e o computador ${escolhaComputador}. Vc ganhou.`)
-        humanoScore = ++humanoScore
-        console.log(`score computador: ${computadorScore} x score humano: ${humanoScore}`)
-    } else if (escolhaHumano === "papel" && escolhaComputador === "tesoura"){
-        console.log(`Vc escolheu ${escolhaHumano} e o computador ${escolhaComputador}. Vc perdeu.`)
         computadorScore = ++computadorScore
-        console.log(`score computador: ${computadorScore} x score humano: ${humanoScore}`)
+        resultado.innerText = `Escolha computador: ${escolhaComputador} x Sua escolha: ${escolhaHumano}
+        Computador score: ${computadorScore} x Seu score: ${humanoScore}.`
+    } else if (escolhaHumano === "tesoura" && escolhaComputador === "papel"){
+        humanoScore = ++humanoScore
+        resultado.innerText = `Escolha computador: ${escolhaComputador} x Sua escolha: ${escolhaHumano}
+        Computador score: ${computadorScore} x Seu score: ${humanoScore}.`
+    } else if (escolhaHumano === "papel" && escolhaComputador === "pedra"){
+        humanoScore = ++humanoScore
+        resultado.innerText = `Escolha computador: ${escolhaComputador} x Sua escolha: ${escolhaHumano}
+        Computador score: ${computadorScore} x Seu score: ${humanoScore}.`
+    } else if (escolhaHumano === "papel" && escolhaComputador === "tesoura"){
+        computadorScore = ++computadorScore
+        resultado.innerText = `Escolha computador: ${escolhaComputador} x Sua escolha: ${escolhaHumano}
+        Computador score: ${computadorScore} x Seu score: ${humanoScore}.`
     } else {
         console.log("algo de errado nao esta certo")
         console.log(escolhaComputador)
